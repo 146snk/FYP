@@ -21,15 +21,17 @@
 
 
 module median_filter_scalable
-# (parameter SIZE = 10) ( // change SIZE to vary system size
+# (parameter SIZE = 100) (
     input [7:0] arr_in [SIZE-1:0],
-    output [7:0] arr_out [SIZE-3:0],
+    output [7:0] arr_out [SIZE-2:0],
     input clk
     );
+    integer result;
     genvar i;
     generate
         for (i=1;i<SIZE-1;i=i+1) begin
             sequential_nine_median median(.A_in(arr_in[i-1]), .B_in(arr_in[i]), .C_in(arr_in[i+1]), .median_out(arr_out[i-1]), .clk(clk));
         end 
     endgenerate
+
 endmodule
