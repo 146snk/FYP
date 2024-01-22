@@ -27,19 +27,17 @@ reg tb_clk;
 wire [7:0] rgb_out [SIZE-3:0];
 reg [7:0] image_out [SIZE-3:0][SIZE-3:0];
 reg [7:0] image [SIZE-1:0][SIZE-1:0];
-integer i, result;
+integer i,j, result;
 
 
 //readfile read(.rgb_value(rgb_in));
 median_filter_scalable test_med(.clk(tb_clk), .arr_in(rgb_in), .arr_out(rgb_out));
 
-
     initial begin
         $readmemh("original.dat", image);
         result = $fopen("processed.dat", "w");
-        $fdisplay(result,image_out);
-        $fclose(result);
         i = 0;
+        j = 0;
         tb_clk = 0;
         forever #1 tb_clk = ~tb_clk;
     end
@@ -52,20 +50,16 @@ median_filter_scalable test_med(.clk(tb_clk), .arr_in(rgb_in), .arr_out(rgb_out)
     end
     
     always@(negedge tb_clk) begin
-        if ((i >= 8) && (i <= 108))
+        if ((i >= 0) && (i <= SIZE-3))
             image_out[i] <= rgb_out;
         i <= i+1;
+        if (i > SIZE-3) begin
+            if (j <= SIZE-3) begin
+                $fdisplay(result, image[j]);
+                j <= j+1;
+            end 
+        end
     end
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+       
 endmodule
