@@ -24,14 +24,48 @@ module readfile_tb # (parameter SIZE = 100)();
 
 reg [7:0] rgb_in [SIZE-1:0];
 reg tb_clk;
-reg [7:0] rgb_out [SIZE-3:0];
+wire [7:0] rgb_out [SIZE-3:0];
+reg [7:0] image_out [SIZE-3:0][SIZE-3:0];
+reg [7:0] image [SIZE-1:0][SIZE-1:0];
+integer i, result;
 
-readfile read(.rgb_value(rgb_in));
+
+//readfile read(.rgb_value(rgb_in));
 median_filter_scalable test_med(.clk(tb_clk), .arr_in(rgb_in), .arr_out(rgb_out));
 
+
     initial begin
+        $readmemh("original.dat", image);
+        result = $fopen("processed.dat", "w");
+        $fdisplay(result,image_out);
+        $fclose(result);
+        i = 0;
         tb_clk = 0;
         forever #1 tb_clk = ~tb_clk;
     end
+    
+    
+     
+    always@(posedge tb_clk) begin
+        if (i < SIZE)
+            rgb_in <= image[i];
+    end
+    
+    always@(negedge tb_clk) begin
+        if ((i >= 8) && (i <= 108))
+            image_out[i] <= rgb_out;
+        i <= i+1;
+    end
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 endmodule
