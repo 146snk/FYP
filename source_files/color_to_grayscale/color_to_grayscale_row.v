@@ -22,8 +22,8 @@
 
 module color_to_grayscale_row(
     input [7:0] R_in,G_in,B_in,
-    input clk,
-    output [7:0] grayscale_out
+    output [7:0] grayscale_out,
+    input clk
     );
     reg [7:0]temp_out;
     reg [7:0]temp_Rout;
