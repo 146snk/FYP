@@ -32,9 +32,9 @@ module sequential_sobel_X_tb(
         forever #1 tb_clk = ~tb_clk;
     end
     initial begin
-        tb_current_in = 8'd5; tb_left_intermediate = 10'd5; tb_right_intermediate = 10'd10;
-        #2 tb_current_in = 8'd10;
-        #2 tb_current_in = 8'd15; tb_left_intermediate = 10'd15; tb_right_intermediate = 10'd10;
+        tb_current_in = 8'd88; tb_left_intermediate = 10'd390; tb_right_intermediate = 10'd668;
+        #2 tb_current_in = 8'd121;
+        #2 tb_current_in = 8'd60; tb_left_intermediate = 10'd15; tb_right_intermediate = 10'd10;
     end
     sequential_sobel_X dut(.current_in(tb_current_in), .current_intermediate(tb_current_intermediate), .left_intermediate(tb_left_intermediate), .right_intermediate(tb_right_intermediate), .sobel_X_out(tb_sobel_X_out), .clk(tb_clk));
 endmodule
