@@ -35,7 +35,7 @@ median_filter_scalable test_med(.clk(tb_clk), .arr_in(rgb_in), .arr_out(rgb_out)
 
     initial begin
         $readmemh("lena_pepper.dat", image);
-        result = $fopen("lena_pepper_processed.dat", "w");
+        result = $fopen("lena_pepper_processed.csv", "w");
         i <= 0;
         j <= 0;
         k <= 0;
