@@ -29,7 +29,7 @@ module sobel_filter_scalable
     wire [9:0] intermediate [SIZE-1:0];
     genvar i;
     generate
-        for(i=0; i<SIZE; i=i+1) begin
+        for(i=1; i<=SIZE-1; i=i+1) begin
             sequential_sobel sobel(.current_in(arr_in[i]), .left_in(arr_in[i-1]), .right_in(arr_in[i+1]), 
               .current_intermediate(intermediate[i]), .left_intermediate(intermediate[i-1]), .right_intermediate(intermediate[i+1]), 
               .sobel_out(arr_out[i-1]), .clk(clk));
