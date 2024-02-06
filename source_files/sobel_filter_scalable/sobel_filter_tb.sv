@@ -18,7 +18,7 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-module sobel_filter_tb # (parameter SIZE = 3)();
+module sobel_filter_tb # (parameter SIZE = 5)();
     reg [7:0] tb_arr_in [SIZE-1:0];
     wire [7:0] tb_arr_out [SIZE-3:0];
     reg tb_clk;
@@ -29,8 +29,9 @@ module sobel_filter_tb # (parameter SIZE = 3)();
         forever #1 tb_clk = ~tb_clk;
     end
     initial begin
-        tb_arr_in[0] = 8'd60; tb_arr_in[1] = 8'd82; tb_arr_in[2] = 8'd71; #2
-        tb_arr_in[0] = 8'd121; tb_arr_in[1] = 8'd174; tb_arr_in[2] = 8'd216; #2
-        tb_arr_in[0] = 8'd88; tb_arr_in[1] = 8'd127; tb_arr_in[2] = 8'd165; 
+        tb_arr_in[0] = 8'd60; tb_arr_in[1] = 8'd82; tb_arr_in[2] = 8'd71; tb_arr_in[3] = 8'd82; tb_arr_in[4] = 8'd60; #2
+        tb_arr_in[0] = 8'd121; tb_arr_in[1] = 8'd174; tb_arr_in[2] = 8'd216; tb_arr_in[3] = 8'd174; tb_arr_in[4] = 8'd121; #2
+        tb_arr_in[0] = 8'd88; tb_arr_in[1] = 8'd127; tb_arr_in[2] = 8'd165; tb_arr_in[3] = 8'd127; tb_arr_in[4] = 8'd88;
+        
     end
 endmodule

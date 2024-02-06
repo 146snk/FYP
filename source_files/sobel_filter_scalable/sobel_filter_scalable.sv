@@ -35,4 +35,7 @@ module sobel_filter_scalable
               .sobel_out(arr_out[i-1]), .clk(clk));
         end
     endgenerate
+    sequential_sobel sobel_0(.current_in(arr_in[0]), .right_in(arr_in[1]), 
+              .current_intermediate(intermediate[0]), .right_intermediate(intermediate[1]), 
+              .clk(clk));
 endmodule

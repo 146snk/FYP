@@ -40,5 +40,5 @@ module sequential_sobel(
         sobel_Y_reg <= sobel_Y_out;
         sobel_reg <= sobel_X_reg + sobel_Y_reg;
     end
-    assign sobel_out = sobel_reg[10:3];
+    assign sobel_out = sobel_reg[9:2];
 endmodule
