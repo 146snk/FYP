@@ -27,16 +27,18 @@ module sequential_sobel_Y(
     output [9:0] sobel_Y_out,
     input clk
     );
-    wire [8:0] current_in_shifted;
+    reg [8:0] current_in_shifted;
+    reg [8:0] left_right_add;
     reg [9:0] add_reg [2:0];
     reg[10:0] sobel_Y_reg;
     
     always @ (posedge clk)begin
-        add_reg[0] <= current_in_shifted + left_in + right_in;
+        left_right_add <= left_in + right_in;
+        current_in_shifted <= {current_in, 1'b0};
+        add_reg[0] <= current_in_shifted + left_right_add;
         add_reg[1] <= add_reg[0];
         add_reg[2] <= add_reg[1];
         sobel_Y_reg <= add_reg[2] - add_reg[0];
     end
-    assign current_in_shifted = {current_in, 1'b0};
-    assign sobel_Y_out = (sobel_Y_reg[10]==1)?~sobel_Y_reg[9:0]:sobel_Y_reg[9:0];
+    assign sobel_Y_out = (sobel_Y_reg[10]==1)?~sobel_Y_reg[9:0]+1:sobel_Y_reg[9:0];
 endmodule
