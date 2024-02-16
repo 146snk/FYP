@@ -31,13 +31,13 @@ module sequential_sobel_Y_tb(
         forever #1 tb_clk = ~tb_clk;
     end
     initial begin
-        tb_left_in = 1; tb_current_in = 2; tb_right_in = 3;
+        tb_left_in = 60; tb_current_in = 82; tb_right_in = 71;
         #2
-        tb_left_in = 4; tb_current_in = 5; tb_right_in = 6;
+        tb_left_in = 121; tb_current_in = 174; tb_right_in = 216;
         #2
-        tb_left_in = 0; tb_current_in = 0; tb_right_in = 0;
-        #2
-        tb_left_in = 14; tb_current_in = 15; tb_right_in = 16;
+        tb_left_in = 88; tb_current_in = 127; tb_right_in = 165;
+//        #2
+//        tb_left_in = 14; tb_current_in = 15; tb_right_in = 16;
         
     end
     

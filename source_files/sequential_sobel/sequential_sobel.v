@@ -25,7 +25,7 @@ module sequential_sobel(
     input [7:0] left_in, right_in,
     input [9:0] left_intermediate, right_intermediate,
     output [9:0] current_intermediate,
-    output [7:0] sobel_out,
+    output reg[7:0] sobel_out,
     input clk
     );
     wire [9:0] sobel_X_out, sobel_Y_out;
@@ -39,6 +39,8 @@ module sequential_sobel(
         sobel_X_reg <= sobel_X_out;
         sobel_Y_reg <= sobel_Y_out;
         sobel_reg <= sobel_X_reg + sobel_Y_reg;
+        sobel_out <= sobel_reg[10]?8'd255:sobel_reg[9:2];
     end
-    assign sobel_out = sobel_reg[10:3];
+    
+//    assign sobel_out = sobel_reg[9:2];
 endmodule
