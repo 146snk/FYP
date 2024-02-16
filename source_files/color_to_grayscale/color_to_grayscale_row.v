@@ -25,16 +25,17 @@ module color_to_grayscale_row(
     input clk,
     output [7:0] grayscale_out
     );
-    reg [7:0]temp_out;
-    reg [7:0]temp_Rout;
-    reg [7:0]temp_Gout;
-    reg [7:0]temp_Bout;
+    reg [11:0]temp_out;
+    reg [11:0]temp_Rout;
+    reg [11:0]temp_Gout;
+    reg [11:0]temp_Bout;
     always@(posedge clk)begin
        //temp_out<=R_in*0.229+G_in*0.589+B_in*0.114;
        //temp_out<=R_in/3+G_in/3+B_in/3;
-       temp_Rout<=R_in/3;
-       temp_Gout<=G_in/3;
-       temp_Bout<=B_in/3;    
+       temp_Rout <= R_in*5;
+       temp_Gout <= G_in*5;
+       temp_Bout <= B_in*5;
+       temp_out <= temp_Rout+temp_Gout+temp_Bout;    
     end
-    assign grayscale_out=temp_Rout+temp_Gout+temp_Bout;
+    assign grayscale_out = temp_out[11:4];
 endmodule
