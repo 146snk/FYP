@@ -49,7 +49,7 @@ sobel_filter_scalable test_sobel(.clk(tb_clk), .arr_in(rgb_in), .arr_out(rgb_out
     end
     
     always@(negedge tb_clk) begin
-        if ((i >= 8) && (i <= SIZE+6)) begin
+        if ((i >= 9) && (i <= SIZE+6)) begin
             image_out[j] <= rgb_out;
             j <= j+1;
         end
