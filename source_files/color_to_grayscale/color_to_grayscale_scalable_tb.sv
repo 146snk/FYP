@@ -35,7 +35,7 @@ integer i,j,k, result;
 
 
 //readfile read(.rgb_value(rgb_in));
-color_to_grayscale test_gray(.clk(tb_clk), .R_arr_in(R_arr_in), .G_arr_in(G_arr_in), 
+color_to_grayscale_scalable test_gray(.clk(tb_clk), .R_arr_in(R_arr_in), .G_arr_in(G_arr_in), 
                              .B_arr_in(B_arr_in), .gray_arr_out(gray_out));
 
     initial begin
